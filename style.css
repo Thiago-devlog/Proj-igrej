@@ -37,9 +37,46 @@ cabeçalho----------------------------------------------------------------------
     display: block;
     margin-top: auto;
     margin-right: auto;
-    height: 100px;
+    height: 90px;
     justify-content: center;
-    align-items: center;
+    align-items: normal;
+    
 
 
+
+}
+/* ==========================================
+SEÇÃO PRINCIPAL (BANNER DA IGREJA)
+   ========================================== */
+.section-principal {
+
+    background-image: linear-gradient(to right, 
+        rgba(0, 0, 0, 0.871) 0%, 
+        rgba(0, 0, 0, 0) 100%
+    ), url('imagens/fotodefrente3.jpeg');
+
+    
+
+    background-size: cover;
+    background-position: center 100%; /* Controla a altura da foto (mude a % para subir/descer o enquadramento) */
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+
+    /* 3. Dimensões do Banner */
+    width: 100%;
+    height: 90vh;                     /* Ocupa exatamente 75% da altura da tela do usuário */
+    
+    /* 4. Alinhamento da Logo que está dentro do Banner */
+    display: flex;
+    align-items: center;              /* Centraliza a logo verticalmente */
+    justify-content: flex-start;      /* Alinha a logo à esquerda */
+    padding: 0 8%;                    /* Afastamento seguro das bordas (cima/baixo e lados) */
+}
+
+/* Estilização da Logo Branca dentro do Banner */
+.section-principal img {
+    max-height: 80%;                  /* Impede que a logo fique gigante ou ultrapasse o banner */
+    width: auto;                      /* Mantém as proporções perfeitas sem distorcer */
+    object-fit: contain;
+    filter: drop-shadow(0px 4px 10px rgb(0, 0, 0)); /* Sombra suave sob a logo para destacar ainda mais */
 }
