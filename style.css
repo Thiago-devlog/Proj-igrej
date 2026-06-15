@@ -1,82 +1,276 @@
-body {
-    background-color: rgb(88, 90, 92);
+/* ==========================================
+   1. RESET PADRÃO & CONFIGURAÇÃO BODY
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
-/*
-cabeçalho-------------------------------------------------------------------------
-*/
+body {
+    background-color: rgb(88, 90, 92);
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* Esconder elementos de controle do hambúrguer no desktop */
+.menu-toggle-input, .menu-hamburger {
+    display: none;
+}
+
+/* ==========================================
+2. CABEÇALHO DESKTOP (HEADER)
+   ========================================== */
 .header-container {
     display: flex;
     justify-content: center;     
     align-items: center;        
-    background-color: #164790;   
-    padding: 10px 20px;   
-    gap: 30px;                  
+    gap: 40px;                  
     width: 100%;
+    padding: 20px 40px;
+    
+
+
+    background-color: rgba(22, 71, 144, 0.819); 
+    backdrop-filter: blur(10px);               /* Desfoca a imagem da igreja atrás do menu */
+    -webkit-backdrop-filter: blur(10px);
+    
 }
+
 .Logo-center img {
-    height: 100px;                 /* Limita a altura do logo para caber na barra */
+    height: 70px;                 
     width: auto;                  
     display: block;
 }
+
 .nav-grupo ul {
     display: flex;
     list-style: none;
     align-items: center;
 }
+
 .nav-grupo li {
-    margin: 15px
+    margin: 0 20px;
 }
+
 .nav-grupo a {
     text-decoration: none;
-    color: black;
-    font-size: 20px;
+    color: #ffffff; 
+    font-size: 16px;
     font-weight: bold;
+    text-transform: uppercase; 
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
 }
-.fotodefrente1 {
-    display: block;
-    margin-top: auto;
-    margin-right: auto;
-    height: 90px;
-    justify-content: center;
-    align-items: normal;
-    
 
-
-
+.nav-grupo a:hover {
+    color: #cbd5e1; 
 }
+
 /* ==========================================
-SEÇÃO PRINCIPAL (BANNER DA IGREJA)
+3. SEÇÕES & BANNER PRINCIPAL
    ========================================== */
-.section-principal {
-
-    background-image: linear-gradient(to right, 
-        rgba(0, 0, 0, 0.871) 0%, 
-        rgba(0, 0, 0, 0) 100%
-    ), url('imagens/fotodefrente3.jpeg');
-
-    
-
-    background-size: cover;
-    background-position: center 100%; /* Controla a altura da foto (mude a % para subir/descer o enquadramento) */
-    background-repeat: no-repeat;
-    background-attachment: fixed; 
-
-    /* 3. Dimensões do Banner */
+.sections {
     width: 100%;
-    height: 90vh;                     /* Ocupa exatamente 75% da altura da tela do usuário */
-    
-    /* 4. Alinhamento da Logo que está dentro do Banner */
-    display: flex;
-    align-items: center;              /* Centraliza a logo verticalmente */
-    justify-content: flex-start;      /* Alinha a logo à esquerda */
-    padding: 0 8%;                    /* Afastamento seguro das bordas (cima/baixo e lados) */
 }
 
-/* Estilização da Logo Branca dentro do Banner */
+.section-principal {
+    background-image: linear-gradient(
+        to left, 
+        rgba(0, 0, 0, 0.6) 0%, 
+        rgba(0, 0, 0, 0.2) 50%,
+        rgba(0, 0, 0, 0.9) 100%
+    ), url('imagens/fotodefrente3.jpeg');
+    
+    background-size: cover;
+    background-position: center 110%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    width: 100%;
+    min-height: calc(100vh - 110px); 
+    
+    display: flex;
+    align-items: flex-start;     
+    justify-content: flex-start; 
+    padding: 60px 0 40px 8%;   
+}
+
 .section-principal img {
-    max-height: 80%;                  /* Impede que a logo fique gigante ou ultrapasse o banner */
-    width: auto;                      /* Mantém as proporções perfeitas sem distorcer */
+    max-height: 55vh; 
+    width: auto;
     object-fit: contain;
-    filter: drop-shadow(0px 4px 10px rgb(0, 0, 0)); /* Sombra suave sob a logo para destacar ainda mais */
+    filter: drop-shadow(0px 4px 15px rgba(0, 0, 0, 0.6));
+}
+.card-vidro-missas {
+    background-color: rgba(255, 255, 255, 0.08); 
+    backdrop-filter: blur(12px);                  
+    -webkit-backdrop-filter: blur(12px);           
+    border: 1px solid rgba(255, 255, 255, 0.15); 
+    border-radius: 12px; 
+    padding: 20px 25px;       
+    max-width: 380px;         
+    width: 100%;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);    
+
+    /* FORÇA TUDO DENTRO DELE A FICAR EM UM EMBAIXO DO OUTRO */
+    display: flex;
+    flex-direction: column; 
+}
+
+/* O título garante uma margem abaixo dele antes de começar a lista */
+.card-vidro-missas h2 {
+    color: #ffffff;
+    font-size: 20px; 
+    margin-bottom: 15px; /* Espaço que empurra a lista para baixo */
+    text-transform: uppercase;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2); 
+    padding-bottom: 8px;
+    width: 100%;
+}
+.lista-missas {
+    list-style: none; 
+    display: flex;
+    flex-direction: column;
+    gap: 12px; 
+}
+
+/* Garante o empilhamento perfeito: Dia em cima, horário embaixo */
+.lista-missas li {
+    color: #ffffff;
+    display: flex;
+    flex-direction: column; 
+    gap: 2px; /* Junta mais o texto do dia com o texto da hora */
+}
+
+.lista-missas li strong {
+    color: #cbd5e1; 
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.lista-missas li span {
+    font-size: 15px;
+
+
+
+
+
+
+
+/* ==========================================================================
+4. RESPONSIVIDADE (TELAS MENORES - TABLETS E CELULARES)
+   ========================================================================== */
+@media (max-width: 850px) {
+    
+    /* Configura o cabeçalho mobile mantendo a logo bem visível na direita ou centro */
+    .header-container {
+        justify-content: space-between; /* Afasta o hambúrguer da logo */
+        padding: 15px 30px;
+        position: relative;
+    }
+
+    /* Mantém a logo do menu com tamanho seguro e nítido */
+    .Logo-center img {
+        height: 60px;
+        order: 2; /* Garante o posicionamento correto ao lado do botão */
+    }
+
+    /* Exibe o botão de três risquinhos (Hambúrguer) */
+    .menu-hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 20px;
+        cursor: pointer;
+        order: 1;
+        z-index: 1010;
+    }
+
+    .menu-hamburger span {
+        display: block;
+        height: 3px;
+        width: 100%;
+        background-color: #ffffff;
+        border-radius: 3px;
+        transition: all 0.3s ease;
+    }
+
+    /* Esconde e estiliza os containers de links em formato de gaveta vertical */
+    .nav-wrapper {
+        display: none; /* Escondido por padrão */
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba(22, 71, 144, 0.397); /* Fundo sólido para leitura */
+        backdrop-filter: blur(10px);
+        padding: 20px 0;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        z-index: 1005;
+    }
+
+    /* Como temos dois wrappers (esquerda e direita), ajustamos a ordem empilhada */
+    .nav-wrapper:nth-of-type(1) { top: 90px; }
+    .nav-wrapper:nth-of-type(2) { top: 250px; border-top: 1px solid rgba(255,255,255,0.1); }
+
+    .nav-grupo ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-grupo li {
+        margin: 0;
+        text-align: center;
+    }
+
+    .nav-grupo a {
+        font-size: 18px;
+        display: block;
+        padding: 10px 0;
+    }
+
+    /* A MÁGICA: Quando o checkbox invisível for marcado, exibe as gavetas de menu */
+    .menu-toggle-input:checked ~ .nav-wrapper {
+        display: block;
+    }
+
+    /* Animação opcional: Transforma o hambúrguer em um "X" quando aberto */
+    .menu-toggle-input:checked + .menu-hamburger span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    .menu-toggle-input:checked + .menu-hamburger span:nth-child(2) {
+        opacity: 0;
+    }
+    .menu-toggle-input:checked + .menu-hamburger span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    /* --------------------------------------------------
+    AJUSTES DO CORPO (LOGO DA SECTION MAIOR E NO CANTO)
+       -------------------------------------------------- */
+    .section-principal {
+        align-items: flex-start;    /* Mantém alinhada ao topo/canto */
+        justify-content: flex-start; /* Garante posicionamento na lateral esquerda */
+        padding: 140px 0 40px 6%;   /* Aumenta o espaço superior para não bater no menu */
+        background-attachment: scroll; 
+    }
+
+    /* Logo principal da igreja destacada e protuberante */
+    .section-principal img {
+        max-height: 48vh; /* Tamanho preservado e imponente */
+        width: 85%;       /* Preenche bem a largura sem esmagar as bordas */
+    }
+}
+@media (max-width: 768px) {
+    .secao-horarios {
+        padding: 40px 5%;
+        justify-content: center; /* Centraliza o card no celular */
+    }
+    
+    .card-vidro-missas {
+        padding: 25px;
+    }
 }

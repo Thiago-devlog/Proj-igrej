@@ -7,7 +7,17 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="header-container">
+  <header class="header-container">
+    <!-- Botão Invisível e Ícone do Menu Hambúrguer -->
+    <input type="checkbox" id="menu-toggle" class="menu-toggle-input">
+    <label for="menu-toggle" class="menu-hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+
+    <!-- Container que junta os links para o efeito mobile -->
+    <div class="nav-wrapper">
         <nav class="nav-grupo">
             <ul>
                 <li><a href="#">Home</a></li>
@@ -15,13 +25,16 @@
                 <li><a href="#">Eventos</a></li>
             </ul>
         </nav>
+    </div>
 
-        <div class="Logo-center">
-            <a href="#">
-                <img src="imagens/logo1.png" alt="logo">
-            </a>
-        </div>
+    <!-- Logotipo Centralizado -->
+    <div class="Logo-center">
+        <a href="#">
+            <img src="imagens/logo1.png" alt="logo">
+        </a>
+    </div>
 
+    <div class="nav-wrapper">
         <nav class="nav-grupo">
             <ul>        
                 <li><a href="#">Atividades</a></li>
@@ -29,17 +42,43 @@
                 <li><a href="#">Contato</a></li>
             </ul>
         </nav>
-    </header>
-    
-    <main class="sections">
-        <section class="section-principal">
-            <img src="imagens/logo2.png" alt="">
-        </section>
-    </main>
+    </div>
+</header>
 
-    <footer>
+<main class="sections">
+    <section class="section-principal">
+        <!-- Logo principal mantida com bom tamanho -->
+        <img src="imagens/logo2.png" alt="Logo Paróquia">
 
-    </footer>
+        <div class="card-vidro-missas">
+            <h2>Horário   <br> de Missas:   
+
+            </h2>
+            
+            <ul class="lista-missas">
+            <li>
+                <strong>Terças-feiras:</strong> 
+                <span>19h (Igreja Matriz)</span>
+            </li>
+            <li>
+                <strong>Sábados:</strong> 
+                <span>19h (Igreja Matriz)</span>
+            </li>
+            <li>
+                <strong>Domingos:</strong> 
+                <span>08h, 10h (no Complexo do Louvor) e 19h (Igreja Matriz)</span>
+            </li>
+        </ul>
+
+    </section>
+        
+    <section>
+        
+    </section>
+</main>
+
+<footer></footer>
+
 </body>
 <script src="script.js"></script>
 </html>
