@@ -1,84 +1,617 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    <!-- ============================================================
+         META E SEO
+    ============================================================ -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paroquia de Santis</title>
+    <meta name="description" content="Site oficial da Paróquia de Santo Estevão, em Santo Estevão, Bahia. Confira horários de missas, pastorais, eventos e entre em contato.">
+    <meta name="keywords" content="Paróquia Santo Estevão, Igreja Bahia, Missas, Pastorais, Catequese">
+    <title>Paróquia de Santo Estevão – Santo Estevão, BA</title>
+
+    <!-- Fontes Google: Cinzel (títulos), Great Vibes (cursiva) e Montserrat (texto) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome – ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="header-container">
-    <!-- Botão Invisível e Ícone do Menu Hambúrguer -->
-    <input type="checkbox" id="menu-toggle" class="menu-toggle-input">
-    <label for="menu-toggle" class="menu-hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-    </label>
 
-    <!-- Container que junta os links para o efeito mobile -->
-    <div class="nav-wrapper">
-        <nav class="nav-grupo">
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Institucional</a></li>
-                <li><a href="#">Eventos</a></li>
+    <!-- ============================================================
+         NAVBAR
+         Links: editar os <li> dentro de <ul class="nav-links">
+    ============================================================ -->
+    <header id="navbar" class="navbar">
+        <div class="navbar-inner">
+            <!-- Links da Esquerda (Desktop) -->
+            <nav class="nav-desktop nav-left" aria-label="Navegação esquerda">
+                <ul class="nav-links-left">
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#sobre">A Paróquia</a></li>
+                    <li><a href="#missas">Missas</a></li>
+                </ul>
+            </nav>
+
+            <!-- Logo Central -->
+            <a href="#inicio" class="navbar-logo" aria-label="Ir ao início">
+                <img src="imagens/logo1.png" alt="Logo da Paróquia de Santo Estevão">
+            </a>
+
+            <!-- Links da Direita (Desktop) -->
+            <nav class="nav-desktop nav-right" aria-label="Navegação direita">
+                <ul class="nav-links-right">
+                    <li><a href="#sacramentos">Sacramentos</a></li>
+                    <li><a href="#pastorais">Pastorais</a></li>
+                    <li><a href="#eventos">Eventos</a></li>
+                    <li><a href="#contato">Fale Conosco</a></li>
+                </ul>
+            </nav>
+
+            <!-- Hamburguer Mobile -->
+            <button id="hamburger" class="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-menu-mobile">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+
+        <!-- Menu Mobile Unificado (Dropdown) -->
+        <nav id="nav-menu-mobile" class="nav-menu-mobile" aria-label="Navegação mobile">
+            <ul class="mobile-links" id="mobile-links">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#sobre">A Paróquia</a></li>
+                <li><a href="#missas">Missas</a></li>
+                <li><a href="#sacramentos">Sacramentos</a></li>
+                <li><a href="#pastorais">Pastorais</a></li>
+                <li><a href="#eventos">Eventos</a></li>
+                <li><a href="#contato">Fale Conosco</a></li>
             </ul>
         </nav>
-    </div>
+    </header>
 
-    <!-- Logotipo Centralizado -->
-    <div class="Logo-center">
-        <a href="#">
-            <img src="imagens/logo1.png" alt="logo">
-        </a>
-    </div>
 
-    <div class="nav-wrapper">
-        <nav class="nav-grupo">
-            <ul>        
-                <li><a href="#">Atividades</a></li>
-                <li><a href="#">Doações</a></li>
-                <li><a href="#">Contato</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
-
-<main class="sections">
-    <section class="section-principal">
-        <!-- Logo principal mantida com bom tamanho -->
-        <img src="imagens/logo2.png" alt="Logo Paróquia">
-
-        <div class="card-vidro-missas">
-            <h2>Horário   <br> de Missas:   
-
-            </h2>
+    <!-- ============================================================
+         HERO – Foto da Igreja com texto e botão de ação
+         Para trocar a foto: editar --hero-bg em style.css (:root)
+         Para mudar texto: editar .hero-pretitle / .hero-titulo / .hero-cursivo
+    ============================================================ -->
+    <section id="inicio" class="hero" aria-label="Apresentação">
+        <div class="hero-overlay" aria-hidden="true"></div>
+        <div class="hero-content fade-in">
+            <div class="hero-top-info">
+                <p class="hero-pretitle">PARÓQUIA</p>
+                <h1 class="hero-titulo">SANTO ESTEVÃO</h1>
+                <p class="hero-cursivo">da Bahia</p>
+                <a href="https://www.instagram.com/paroquiadesantoestevao" target="_blank" rel="noopener" class="hero-badge-link" id="hero-badge">
+                    <i class="fab fa-instagram"></i> Acompanhe Nossa Comunidade no Instagram
+                </a>
+            </div>
             
-            <ul class="lista-missas">
-            <li>
-                <strong>Terças-feiras:</strong> 
-                <span>19h (Igreja Matriz)</span>
-            </li>
-            <li>
-                <strong>Sábados:</strong> 
-                <span>19h (Igreja Matriz)</span>
-            </li>
-            <li>
-                <strong>Domingos:</strong> 
-                <span>08h, 10h (no Complexo do Louvor) e 19h (Igreja Matriz)</span>
-            </li>
-        </ul>
+            <div class="hero-cards-container">
+                <!-- Card 1: Horários de Missas -->
+                <div class="hero-card card-vidro">
+                    <div class="hero-card-header">
+                        <i class="fas fa-clock"></i> Celebrações & Missas
+                    </div>
+                    <div class="hero-card-body">
+                        <ul class="hero-missa-list">
+                            <li><strong>Terça-feira:</strong> <span>19h (Igreja Matriz)</span></li>
+                            <li><strong>Sábado:</strong> <span>19h (Igreja Matriz)</span></li>
+                            <li><strong>Domingo:</strong> <span>06h e 08h (Igreja Matriz)</span></li>
+                            <li><strong>Domingo:</strong> <span>19:30h (Igreja Matriz)</span></li>
+                        </ul>
+                    </div>
+                </div>
 
+                <!-- Card 2: Instagram Feed Widget -->
+                <div class="hero-card card-vidro widget-instagram">
+                    <div class="instagram-header">
+                        <div class="ig-profile">
+                            <img src="imagens/logo2.png" alt="Perfil Paróquia" class="ig-avatar">
+                            <div class="ig-meta">
+                                <span class="ig-username">paroquiadesantoestevao</span>
+                                <span class="ig-location">Santo Estevão, Bahia</span>
+                            </div>
+                        </div>
+                        <a href="https://www.instagram.com/paroquiadesantoestevao" target="_blank" rel="noopener" class="ig-follow-btn">Seguir</a>
+                    </div>
+                    <div class="instagram-post-body">
+                        <img src="imagens/fotodefrente2.jpg" alt="Post da Paróquia" class="ig-post-img">
+                        <div class="ig-post-overlay">
+                            <span><i class="fas fa-heart"></i> Curtir</span>
+                            <span><i class="fas fa-comment"></i> Comentar</span>
+                        </div>
+                    </div>
+                    <div class="instagram-caption">
+                        <strong>paroquiadesantoestevao</strong> Festa de Santo Estevão 2026. Venha celebrar conosco em nossa Igreja Matriz! #Fé #SantoEstevao
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#missas" class="scroll-down" aria-label="Rolar para baixo">
+            <i class="fas fa-chevron-down"></i>
+        </a>
     </section>
-        
-    <section>
-        
+
+
+    <!-- ============================================================
+         MISSAS – Fundo claro, cards brancos limpos
+         Para atualizar horários: editar os <li> em cada .missa-card
+    ============================================================ -->
+    <section id="missas" class="section section-missas" aria-labelledby="titulo-missas">
+        <div class="container">
+
+            <header class="section-header fade-up">
+                <span class="section-tag">Celebrações</span>
+                <h2 class="section-title" id="titulo-missas">Horários de Missas</h2>
+                <div class="divider" aria-hidden="true"><i class="fas fa-cross"></i></div>
+                <p class="section-desc">Venha celebrar conosco. Confira os horários das nossas missas semanais.</p>
+            </header>
+
+            <div class="missas-grid">
+
+                <div class="card-limpo missa-card fade-up">
+                    <div class="missa-icon"><i class="fas fa-moon"></i></div>
+                    <h3>Terças-feiras</h3>
+                    <ul class="missa-horarios">
+                        <li><i class="fas fa-clock"></i><span>19h – Igreja Matriz</span></li>
+                    </ul>
+                </div>
+
+                <div class="card-limpo missa-card missa-destaque fade-up">
+                    <div class="missa-icon"><i class="fas fa-star"></i></div>
+                    <h3>Sábados</h3>
+                    <ul class="missa-horarios">
+                        <li><i class="fas fa-clock"></i><span>19h – Igreja Matriz</span></li>
+                    </ul>
+                </div>
+
+                <div class="card-limpo missa-card fade-up">
+                    <div class="missa-icon"><i class="fas fa-sun"></i></div>
+                    <h3>Domingos</h3>
+                    <ul class="missa-horarios">
+                        <li><i class="fas fa-clock"></i><span>06h – Igreja Matriz</span></li>
+                        <li><i class="fas fa-clock"></i><span>08h – Igreja Matriz</span></li>
+                        <li><i class="fas fa-clock"></i><span>19:30h – Igreja Matriz</span></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Aviso secretaria -->
+            <div class="secretaria-banner card-limpo fade-up">
+                <i class="fas fa-church"></i>
+                <p><strong>Secretaria Paroquial:</strong> Seg–Sex 08h–12h e 14h–17h &nbsp;|&nbsp; Sáb 08h–12h</p>
+                <a href="tel:+557532452880" class="secretaria-tel" id="btn-tel-missas">
+                    <i class="fas fa-phone"></i> (75) 8164-9184
+                </a>
+            </div>
+
+        </div>
     </section>
-</main>
 
-<footer></footer>
 
+    <!-- ============================================================
+         SACRAMENTOS – Três cards com imagens e efeito de vidro
+    ============================================================ -->
+    <section id="sacramentos" class="section section-sacramentos" aria-labelledby="titulo-sacramentos">
+        <div class="container">
+            <header class="section-header fade-up">
+                <span class="section-tag">Caminho da Fé</span>
+                <h2 class="section-title" id="titulo-sacramentos">Sacramentos</h2>
+                <div class="divider" aria-hidden="true"><i class="fas fa-cross"></i></div>
+                <p class="section-desc">Os sacramentos são sinais visíveis da graça de Deus em nossas vidas.</p>
+            </header>
+
+            <div class="sacramentos-grid">
+                <!-- Card Batismo -->
+                <div class="sacramento-card fade-up">
+                    <div class="sacramento-img-wrapper">
+                        <img src="imagens/Dinner Napkins.jfif" alt="Batismo" loading="lazy">
+                    </div>
+                    <div class="sacramento-content card-vidro">
+                        <h3>Batismo</h3>
+                        <p>O início de uma nova vida em Cristo. Agende a preparação e o batismo do seu filho.</p>
+                        <a href="#contato" class="btn btn-card-link">Agendamentos <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Card Casamento -->
+                <div class="sacramento-card fade-up">
+                    <div class="sacramento-img-wrapper">
+                        <img src="imagens/matrimônio.png" alt="Casamento" loading="lazy">
+                    </div>
+                    <div class="sacramento-content card-vidro">
+                        <h3>Casamento</h3>
+                        <p>A união sagrada abençoada por Deus. Informações sobre cursos de noivos e reservas.</p>
+                        <a href="#contato" class="btn btn-card-link">Informações <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Card Dízimo -->
+                <div class="sacramento-card fade-up">
+                    <div class="sacramento-img-wrapper">
+                        <img src="imagens/download (12).jfif" alt="Dízimo" loading="lazy">
+                    </div>
+                    <div class="sacramento-content card-vidro">
+                        <h3>Dízimo</h3>
+                        <p>Um ato de amor, gratidão e partilha. Ajude a manter as obras de nossa paróquia.</p>
+                        <a href="#contato" class="btn btn-card-link">Como Contribuir <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         SOBRE – Fundo branco, layout em duas colunas
+         Para alterar texto: editar os <p> abaixo
+         Para trocar foto: editar o src da <img>
+    ============================================================ -->
+    <section id="sobre" class="section section-sobre" aria-labelledby="titulo-sobre">
+        <div class="container sobre-grid">
+
+            <div class="sobre-texto fade-left">
+                <span class="section-tag">Nossa História</span>
+                <h2 class="section-title" id="titulo-sobre">Paróquia de<br>Santo Estevão</h2>
+                <div class="divider divider-esq"><i class="fas fa-cross"></i></div>
+                <p>A Paróquia de Santo Estevão é o coração espiritual do município de Santo Estevão, Bahia. Fundada para servir à comunidade local, é um lugar de fé, acolhimento e transformação.</p>
+                <p>Sob a proteção de <strong>Santo Estevão</strong>, o primeiro mártir da Igreja, nossa comunidade se une para celebrar a fé, servir ao próximo e crescer espiritualmente. Realizamos diversas atividades ao longo do ano, incluindo a Semana Santa, a Festa do Padroeiro (26 de dezembro) e a Festa da Colheita.</p>
+                <p>Fazemos parte da <strong>Arquidiocese de Feira de Santana</strong>, reunindo diversas capelas e comunidades na região.</p>
+                <a href="#pastorais" class="btn btn-azul" id="btn-pastorais-sobre">
+                    <i class="fas fa-users"></i> Nossas Pastorais
+                </a>
+            </div>
+
+            <div class="sobre-imagem fade-right">
+                <div class="img-frame">
+                    <img src="imagens/interno.jfif" alt="Interior da Igreja de Santo Estevão" loading="lazy">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         PASTORAIS – Foto de fundo + caixas de vidro (glassmorphism)
+         Para adicionar pastoral: copiar um bloco .pastoral-card
+         Para remover: apagar o bloco correspondente
+         Ícones: buscar em fontawesome.com/icons
+    ============================================================ -->
+    <section id="pastorais" class="section section-pastorais section--foto" aria-labelledby="titulo-pastorais">
+        <div class="container">
+
+            <header class="section-header fade-up">
+                <span class="section-tag">Comunidade</span>
+                <h2 class="section-title" id="titulo-pastorais">Pastorais e Atividades</h2>
+                <div class="divider" aria-hidden="true"><i class="fas fa-cross"></i></div>
+                <p class="section-desc">Há um espaço de missão para todos em nossa comunidade de fé.</p>
+            </header>
+
+            <div class="pastorais-grid">
+
+                <div class="card-vidro pastoral-card fade-up">
+                    <div class="pastoral-icon"><i class="fas fa-book-open"></i></div>
+                    <h3>Catequese</h3>
+                    <p>Formação na fé para crianças, jovens e adultos. Batismo, 1ª Eucaristia e Crisma.</p>
+                </div>
+
+                <div class="card-vidro pastoral-card fade-up">
+                    <div class="pastoral-icon"><i class="fas fa-house-heart"></i></div>
+                    <h3>Pastoral da Família</h3>
+                    <p>Apoio e fortalecimento dos vínculos familiares à luz do Evangelho.</p>
+                </div>
+
+                <div class="card-vidro pastoral-card fade-up">
+                    <div class="pastoral-icon"><i class="fas fa-hands-praying"></i></div>
+                    <h3>Grupo de Oração</h3>
+                    <p>Oração comunitária, adoração eucarística e renovação espiritual.</p>
+                </div>
+
+                <div class="card-vidro pastoral-card fade-up">
+                    <div class="pastoral-icon"><i class="fas fa-music"></i></div>
+                    <h3>Pastoral da Música</h3>
+                    <p>Animação litúrgica das celebrações com cânticos e instrumentos.</p>
+                </div>
+
+                <div class="card-vidro pastoral-card fade-up">
+                    <div class="pastoral-icon"><i class="fas fa-heart"></i></div>
+                    <h3>Pastoral Social</h3>
+                    <p>Obras de misericórdia e serviço fraterno aos mais necessitados.</p>
+                </div>
+
+                <div class="card-vidro pastoral-card fade-up">
+                    <div class="pastoral-icon"><i class="fas fa-person-running"></i></div>
+                    <h3>Pastoral da Juventude</h3>
+                    <p>Encontro, formação e missão para os jovens da paróquia.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         EVENTOS – Fundo claro, cards limpos com data dourada
+         Para adicionar evento: copiar um bloco .evento-card
+         evento-dia: número (ex: "26") ou mês abreviado (ex: "Abr")
+         evento-mes: mês ou ano
+    ============================================================ -->
+    <section id="eventos" class="section section-eventos" aria-labelledby="titulo-eventos">
+        <div class="container">
+
+            <header class="section-header fade-up">
+                <span class="section-tag">Agenda</span>
+                <h2 class="section-title" id="titulo-eventos">Próximos Eventos</h2>
+                <div class="divider" aria-hidden="true"><i class="fas fa-cross"></i></div>
+                <p class="section-desc">Fique por dentro das celebrações e eventos especiais ao longo do ano.</p>
+            </header>
+
+            <div class="eventos-grid">
+
+                <article class="card-limpo evento-card fade-up">
+                    <div class="evento-data">
+                        <span class="evento-dia">26</span>
+                        <span class="evento-mes">Dez</span>
+                    </div>
+                    <div class="evento-info">
+                        <h3>Festa de Santo Estevão</h3>
+                        <p>Missa solene, novenário e procissão pelas ruas da cidade em honra ao padroeiro.</p>
+                        <span class="evento-local"><i class="fas fa-map-marker-alt"></i> Igreja Matriz</span>
+                    </div>
+                </article>
+
+                <article class="card-limpo evento-card fade-up">
+                    <div class="evento-data">
+                        <span class="evento-dia">Abr</span>
+                        <span class="evento-mes">2026</span>
+                    </div>
+                    <div class="evento-info">
+                        <h3>Semana Santa</h3>
+                        <p>Via Sacra, Tríduo Pascal e celebrações da Paixão, Morte e Ressurreição de Cristo.</p>
+                        <span class="evento-local"><i class="fas fa-map-marker-alt"></i> Igreja Matriz e Cidade</span>
+                    </div>
+                </article>
+
+                <article class="card-limpo evento-card fade-up">
+                    <div class="evento-data">
+                        <span class="evento-dia">Mai</span>
+                        <span class="evento-mes">2026</span>
+                    </div>
+                    <div class="evento-info">
+                        <h3>Mês de Maria</h3>
+                        <p>Novenário especial e procissão em honra à Nossa Senhora durante o mês mariano.</p>
+                        <span class="evento-local"><i class="fas fa-map-marker-alt"></i> Igreja Matriz</span>
+                    </div>
+                </article>
+                
+                
+                <article class="card-limpo evento-card fade-up">
+                    <div class="evento-data">
+                        <span class="evento-dia">Jun</span>
+                        <span class="evento-mes">2026</span>
+                    </div>
+                    <div class="evento-info">
+                        <h3>Corpus Christi</h3>
+                        <p>Procissão do Santíssimo Sacramento pelas ruas do Centro com tapetes decorados.</p>
+                        <span class="evento-local"><i class="fas fa-map-marker-alt"></i> Centro da Cidade</span>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         GALERIA – Fundo branco, grid de fotos com lightbox
+         Para adicionar foto: copiar um .galeria-item e trocar o src
+         A primeira foto ocupa espaço duplo (galeria-item--destaque)
+    ============================================================ -->
+    <section id="galeria" class="section section-galeria" aria-labelledby="titulo-galeria">
+        <div class="container">
+
+            <header class="section-header fade-up">
+                <span class="section-tag">Galeria</span>
+                <h2 class="section-title" id="titulo-galeria">Nossa Igreja</h2>
+                <div class="divider" aria-hidden="true"><i class="fas fa-cross"></i></div>
+                <p class="section-desc">Momentos e espaços da nossa comunidade.</p>
+            </header>
+
+            <div class="galeria-grid">
+
+                <div class="galeria-item galeria-item--destaque fade-up" tabindex="0" role="button" aria-label="Ampliar foto">
+                    <img src="imagens/fotodefrente1.jpeg" alt="Fachada principal da Igreja Matriz" loading="lazy">
+                    <div class="galeria-overlay"><i class="fas fa-magnifying-glass-plus"></i></div>
+                </div>
+
+                <div class="galeria-item fade-up" tabindex="0" role="button" aria-label="Ampliar foto">
+                    <img src="imagens/fotodefrente2.jpg" alt="Vista frontal da Paróquia" loading="lazy">
+                    <div class="galeria-overlay"><i class="fas fa-magnifying-glass-plus"></i></div>
+                </div>
+
+                <div class="galeria-item fade-up" tabindex="0" role="button" aria-label="Ampliar foto">
+                    <img src="imagens/fotodefrente3.jpeg" alt="Igreja de Santo Estevão" loading="lazy">
+                    <div class="galeria-overlay"><i class="fas fa-magnifying-glass-plus"></i></div>
+                </div>
+
+                <div class="galeria-item fade-up" tabindex="0" role="button" aria-label="Ampliar foto">
+                    <img src="imagens/interno.jfif" alt="Interior da Igreja" loading="lazy">
+                    <div class="galeria-overlay"><i class="fas fa-magnifying-glass-plus"></i></div>
+                </div>
+
+                <div class="galeria-item fade-up" tabindex="0" role="button" aria-label="Ampliar foto">
+                    <img src="imagens/Praca-da-Lua-Foto.jpg" alt="Praça de Santo Estevão" loading="lazy">
+                    <div class="galeria-overlay"><i class="fas fa-magnifying-glass-plus"></i></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Lightbox -->
+        <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Visualizador de imagem">
+            <button id="lightbox-close" class="lightbox-close" aria-label="Fechar">
+                <i class="fas fa-xmark"></i>
+            </button>
+            <img id="lightbox-img" src="" alt="">
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         CONTATO – Foto de fundo + caixas de vidro + mapa
+         Para alterar dados: editar os .info-item abaixo
+         Para atualizar mapa: trocar o src do <iframe>
+    ============================================================ -->
+    <section id="contato" class="section section-contato section--foto" aria-labelledby="titulo-contato">
+        <div class="container">
+
+            <header class="section-header fade-up">
+                <span class="section-tag">Fale Conosco</span>
+                <h2 class="section-title" id="titulo-contato">Entre em Contato</h2>
+                <div class="divider" aria-hidden="true"><i class="fas fa-cross"></i></div>
+                <p class="section-desc">Estamos aqui para acolher você. Venha nos visitar ou entre em contato.</p>
+            </header>
+
+            <div class="contato-grid">
+
+                <!-- Informações -->
+                <div class="contato-info fade-left">
+
+                    <div class="card-vidro info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Endereço</strong>
+                            <p>Praça da Bandeira, s/nº, Centro<br>Santo Estevão – BA, CEP 44.190-000</p>
+                        </div>
+                    </div>
+
+                    <div class="card-vidro info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong>Telefone</strong>
+                            <p><a href="tel:+55 75 8164-9184" id="link-tel">(75) 8164-9184</a></p>
+                        </div>
+                    </div>
+
+                    <div class="card-vidro info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>E-mail</strong>
+                            <p><a href="mailto:paroquia.estevao@hotmail.com" id="link-email">paroquia.estevao@hotmail.com</a></p>
+                        </div>
+                    </div>
+
+                    <div class="card-vidro info-item">
+                        <i class="fab fa-instagram"></i>
+                        <div>
+                            <strong>Instagram</strong>
+                            <p><a href="https://www.instagram.com/paroquiadesantoestevao" target="_blank" rel="noopener" id="link-ig">@paroquiadesantoestevao</a></p>
+                        </div>
+                    </div>
+
+                    <div class="card-vidro info-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <strong>Secretaria</strong>
+                            <p>Seg–Sex: 08h às 12h e 14h às 17h<br>Sábados: 08h às 12h</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Mapa -->
+                <div class="contato-mapa fade-right">
+                    <div class="card-vidro mapa-container">
+                        <!-- Para trocar o mapa: vá em maps.google.com → Compartilhar → Incorporar → cole o src aqui -->
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.4!2d-39.2770!3d-12.4340!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x70e4e07d2a3df01%3A0xac4c2e4edab65d8!2sSanto%20Estev%C3%A3o%2C%20BA%2C%2044190-000!5e0!3m2!1spt-BR!2sbr!4v1718400000000!5m2!1spt-BR!2sbr"
+                            title="Localização da Paróquia de Santo Estevão"
+                            allowfullscreen
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         FOOTER – Rodapé escuro
+         Para alterar redes sociais: editar os links .footer-social
+    ============================================================ -->
+    <footer class="footer" aria-label="Rodapé">
+        <div class="container footer-grid">
+
+            <div class="footer-col">
+                <img src="imagens/logo1.png" alt="Logo Paróquia de Santo Estevão" class="footer-logo">
+                <p>Um lugar de fé, esperança e caridade em Santo Estevão, Bahia. Unidos em Cristo, servindo à comunidade.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Links Rápidos</h4>
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#missas">Horários de Missas</a></li>
+                    <li><a href="#sobre">Sobre a Paróquia</a></li>
+                    <li><a href="#pastorais">Pastorais</a></li>
+                    <li><a href="#eventos">Eventos</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contato</h4>
+                <address>
+                    <p><i class="fas fa-map-marker-alt"></i> Praça da Bandeira, s/nº<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Santo Estevão – BA</p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+557532452880">(75) 3245-2880</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:paroquia.estevao@hotmail.com">paroquia.estevao@hotmail.com</a></p>
+                </address>
+            </div>
+
+            <div class="footer-col">
+                <h4>Siga-nos</h4>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/paroquiadesantoestevao" target="_blank" rel="noopener" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.youtube.com" target="_blank" rel="noopener" aria-label="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://api.whatsapp.com/send?phone=557532452880" target="_blank" rel="noopener" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+                <p class="footer-horario">
+                    <strong>Secretaria:</strong><br>
+                    Seg–Sex: 08h–12h e 14h–17h<br>
+                    Sábados: 08h–12h
+                </p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© <span id="ano-atual"></span> Paróquia de Santo Estevão – Santo Estevão, BA. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Botão voltar ao topo -->
+    <button id="btn-topo" class="btn-topo" aria-label="Voltar ao topo">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
 </body>
-<script src="script.js"></script>
 </html>

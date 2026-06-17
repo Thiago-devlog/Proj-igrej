@@ -1,276 +1,1602 @@
-/* ==========================================
-   1. RESET PADRÃO & CONFIGURAÇÃO BODY
-   ========================================== */
-* {
+/* ============================================================
+   PARÓQUIA DE SANTO ESTEVÃO – FOLHA DE ESTILOS PRINCIPAL
+   style.css
+
+   ÍNDICE RÁPIDO (use Ctrl+F para navegar):
+   1.  VARIÁVEIS E DESIGN SYSTEM   → :root
+   2.  RESET GLOBAL                → *, html, body
+   3.  UTILITÁRIOS E COMPONENTES   → .container, .section, .card-vidro, .btn…
+   4.  NAVBAR                      → .navbar
+   5.  HERO / BANNER PRINCIPAL     → .hero
+   6.  SEÇÃO MISSAS                → .section-missas
+   7.  SEÇÃO SOBRE                 → .section-sobre
+   8.  SEÇÃO PASTORAIS             → .section-pastorais
+   9.  SEÇÃO EVENTOS               → .section-eventos
+   10. SEÇÃO GALERIA + LIGHTBOX    → .section-galeria
+   11. SEÇÃO CONTATO               → .section-contato
+   12. FOOTER                      → .footer
+   13. BOTÃO VOLTAR AO TOPO        → .btn-topo
+   14. ANIMAÇÕES                   → @keyframes, .fade-*
+   15. RESPONSIVIDADE              → @media
+   ============================================================ */
+
+
+/* ============================================================
+   1. VARIÁVEIS E DESIGN SYSTEM
+   ‼️ Para mudar toda a identidade visual do site, edite AQUI.
+   ============================================================ */
+:root {
+    /* --- Paleta de cores (Aesthetic & Clean Light Theme) --- */
+    --azul-escuro:    #fcfbfa;       /* Fundo principal (creme claro) */
+    --azul-medio:     #f4f3ee;       /* Fundo de seções alternadas */
+    --azul-claro:     #0b2545;       /* Azul real sacro para destaque */
+    --dourado:        #c5a059;       /* Dourado nobre */
+    --dourado-claro:  #e4d5b7;       /* Dourado claro */
+    --branco:         #ffffff;
+    --texto:          #2c3e50;       /* Texto principal (slate escuro) */
+    --texto-muted:    #7f8c8d;       /* Texto secundário (cinza) */
+
+    /* --- Glassmorphism (vidro frosted) --- */
+    --vidro-bg:       rgba(255, 255, 255, 0.70);
+    --vidro-borda:    rgba(197, 160, 89, 0.20);
+    --vidro-blur:     16px;
+    --vidro-sombra:   0 10px 32px rgba(0, 0, 0, 0.05);
+
+    /* --- Glassmorphism Escuro (para o Hero) --- */
+    --vidro-escuro-bg:    rgba(11, 37, 69, 0.65);
+    --vidro-escuro-borda: rgba(255, 255, 255, 0.15);
+    --vidro-escuro-sombra: 0 15px 35px rgba(0, 0, 0, 0.3);
+
+    /* --- Tipografia --- */
+    --fonte-titulo:   'Cinzel', Georgia, serif;
+    --fonte-texto:    'Montserrat', Arial, sans-serif;
+    --fonte-cursiva:  'Great Vibes', cursive;
+
+    /* --- Layout --- */
+    --section-pad:    100px 0;
+    --container-max:  1200px;
+    --container-h:    0 24px;
+
+    /* --- Bordas e transições --- */
+    --radius:         16px;
+    --radius-btn:     50px;
+    --transicao:      all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* --- Imagem do hero --- */
+    --hero-bg: url('imagens/fotodefrente3.jpeg');
+}
+
+
+/* ============================================================
+   2. RESET GLOBAL
+   ============================================================ */
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* Compensa a navbar fixa ao clicar em âncoras */
 }
 
 body {
-    background-color: rgb(88, 90, 92);
-    width: 100%;
+    font-family: var(--fonte-texto);
+    background-color: var(--azul-escuro);
+    color: var(--texto);
+    line-height: 1.7;
     overflow-x: hidden;
 }
 
-/* Esconder elementos de controle do hambúrguer no desktop */
-.menu-toggle-input, .menu-hamburger {
-    display: none;
-}
-
-/* ==========================================
-2. CABEÇALHO DESKTOP (HEADER)
-   ========================================== */
-.header-container {
-    display: flex;
-    justify-content: center;     
-    align-items: center;        
-    gap: 40px;                  
-    width: 100%;
-    padding: 20px 40px;
-    
-
-
-    background-color: rgba(22, 71, 144, 0.819); 
-    backdrop-filter: blur(10px);               /* Desfoca a imagem da igreja atrás do menu */
-    -webkit-backdrop-filter: blur(10px);
-    
-}
-
-.Logo-center img {
-    height: 70px;                 
-    width: auto;                  
+img {
+    max-width: 100%;
     display: block;
 }
 
-.nav-grupo ul {
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul { list-style: none; }
+
+address { font-style: normal; }
+
+
+/* ============================================================
+   3. UTILITÁRIOS E COMPONENTES BASE
+   ============================================================ */
+
+/* Container centralizado */
+.container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: var(--container-h);
+}
+
+/* Padding padrão de seção */
+.section {
+    padding: var(--section-pad);
+}
+
+/* Linha separadora dourada entre seções */
+.section::before {
+    content: '';
+    display: block;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--dourado), transparent);
+    margin-bottom: 0;
+}
+/* Exceção: o hero não precisa de separador */
+.hero::before { display: none; }
+
+/* Cabeçalho de seção (tag + título + divisor + descrição) */
+.section-header {
+    text-align: center;
+    margin-bottom: 56px;
+}
+
+.section-tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--dourado);
+    margin-bottom: 10px;
+}
+
+.section-title {
+    font-family: var(--fonte-titulo);
+    font-size: clamp(24px, 4vw, 42px);
+    font-weight: 600;
+    color: var(--azul-claro);
+    line-height: 1.2;
+    margin-bottom: 14px;
+}
+
+.section-desc {
+    font-size: 15px;
+    color: var(--texto-muted);
+    max-width: 540px;
+    margin: 14px auto 0;
+    line-height: 1.8;
+}
+
+/* Divisor decorativo com ícone central */
+.divider {
     display: flex;
-    list-style: none;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: var(--dourado);
+    font-size: 12px;
+    margin: 10px 0;
+}
+.divider::before,
+.divider::after {
+    content: '';
+    display: block;
+    width: 56px;
+    height: 1px;
+    background: var(--dourado);
+    opacity: 0.45;
+}
+
+/* ─── CARD GLASSMORPHISM ─────────────────────────────────── */
+/* Aplicado como classe utilitária em qualquer elemento        */
+.card-vidro {
+    background:         var(--vidro-bg);
+    backdrop-filter:    blur(var(--vidro-blur));
+    -webkit-backdrop-filter: blur(var(--vidro-blur));
+    border:             1px solid var(--vidro-borda);
+    border-radius:      var(--radius);
+    box-shadow:         var(--vidro-sombra);
+}
+
+/* ─── BOTÕES ─────────────────────────────────────────────── */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 32px;
+    border-radius: var(--radius-btn);
+    font-family: var(--fonte-texto);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: var(--transicao);
+    white-space: nowrap;
+}
+
+/* Botão primário dourado */
+.btn-primary {
+    background: linear-gradient(135deg, var(--dourado), var(--dourado-claro));
+    color: var(--azul-escuro);
+    border-color: var(--dourado);
+}
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(201, 162, 39, 0.45);
+    background: linear-gradient(135deg, var(--dourado-claro), var(--dourado));
+}
+
+/* Botão secundário contorno branco */
+.btn-outline {
+    background: transparent;
+    color: var(--branco);
+    border-color: rgba(255, 255, 255, 0.45);
+}
+.btn-outline:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--branco);
+    transform: translateY(-2px);
+}
+
+
+/* ============================================================
+   4. NAVBAR
+   ============================================================ */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 20px 0;
+    transition: var(--transicao);
+}
+
+/* Estado sólido ao rolar a página */
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 12px 0;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid var(--vidro-borda);
+}
+
+.navbar-inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: var(--container-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+/* Logo da navbar */
+.navbar-logo img {
+    height: 62px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
+    transition: var(--transicao);
+}
+.navbar.scrolled .navbar-logo img {
+    height: 54px;
+}
+.navbar-logo:hover img {
+    transform: scale(1.04);
+}
+
+/* Split navbar desktop */
+.nav-desktop {
+    display: flex;
     align-items: center;
 }
 
-.nav-grupo li {
-    margin: 0 20px;
-}
-
-.nav-grupo a {
-    text-decoration: none;
-    color: #ffffff; 
-    font-size: 16px;
-    font-weight: bold;
-    text-transform: uppercase; 
-    letter-spacing: 1px;
-    transition: color 0.3s ease;
-}
-
-.nav-grupo a:hover {
-    color: #cbd5e1; 
-}
-
-/* ==========================================
-3. SEÇÕES & BANNER PRINCIPAL
-   ========================================== */
-.sections {
-    width: 100%;
-}
-
-.section-principal {
-    background-image: linear-gradient(
-        to left, 
-        rgba(0, 0, 0, 0.6) 0%, 
-        rgba(0, 0, 0, 0.2) 50%,
-        rgba(0, 0, 0, 0.9) 100%
-    ), url('imagens/fotodefrente3.jpeg');
-    
-    background-size: cover;
-    background-position: center 110%;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-
-    width: 100%;
-    min-height: calc(100vh - 110px); 
-    
+.nav-links-left,
+.nav-links-right {
     display: flex;
-    align-items: flex-start;     
-    justify-content: flex-start; 
-    padding: 60px 0 40px 8%;   
+    align-items: center;
+    gap: 8px;
 }
 
-.section-principal img {
-    max-height: 55vh; 
-    width: auto;
-    object-fit: contain;
-    filter: drop-shadow(0px 4px 15px rgba(0, 0, 0, 0.6));
-}
-.card-vidro-missas {
-    background-color: rgba(255, 255, 255, 0.08); 
-    backdrop-filter: blur(12px);                  
-    -webkit-backdrop-filter: blur(12px);           
-    border: 1px solid rgba(255, 255, 255, 0.15); 
-    border-radius: 12px; 
-    padding: 20px 25px;       
-    max-width: 380px;         
-    width: 100%;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);    
-
-    /* FORÇA TUDO DENTRO DELE A FICAR EM UM EMBAIXO DO OUTRO */
-    display: flex;
-    flex-direction: column; 
-}
-
-/* O título garante uma margem abaixo dele antes de começar a lista */
-.card-vidro-missas h2 {
-    color: #ffffff;
-    font-size: 20px; 
-    margin-bottom: 15px; /* Espaço que empurra a lista para baixo */
+.nav-links-left a,
+.nav-links-right a {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.2); 
-    padding-bottom: 8px;
-    width: 100%;
+    color: rgba(255, 255, 255, 0.95);
+    padding: 8px 16px;
+    border-radius: 50px;
+    transition: var(--transicao);
+    font-family: var(--fonte-titulo);
 }
-.lista-missas {
-    list-style: none; 
+
+.nav-links-left a:hover,
+.nav-links-right a:hover,
+.nav-links-left a.active,
+.nav-links-right a.active {
+    color: var(--dourado);
+    background: rgba(197, 160, 89, 0.1);
+}
+
+/* Cores quando scrolled */
+.navbar.scrolled .nav-links-left a,
+.navbar.scrolled .nav-links-right a {
+    color: var(--azul-claro);
+}
+
+/* Menu Mobile Unificado (Dropdown) */
+.nav-menu-mobile {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(80vw, 320px);
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+    border-left: 1px solid var(--vidro-borda);
+    padding: 100px 32px 40px;
     display: flex;
     flex-direction: column;
-    gap: 12px; 
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 999;
 }
 
-/* Garante o empilhamento perfeito: Dia em cima, horário embaixo */
-.lista-missas li {
-    color: #ffffff;
+.nav-menu-mobile.open {
+    transform: translateX(0);
+}
+
+.mobile-links {
     display: flex;
-    flex-direction: column; 
-    gap: 2px; /* Junta mais o texto do dia com o texto da hora */
+    flex-direction: column;
+    gap: 16px;
 }
 
-.lista-missas li strong {
-    color: #cbd5e1; 
-    font-size: 16px;
+.mobile-links a {
+    font-family: var(--fonte-titulo);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--azul-claro);
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(197, 160, 89, 0.15);
+    display: block;
+    transition: var(--transicao);
+}
+
+.mobile-links a:hover,
+.mobile-links a.active {
+    color: var(--dourado);
+    padding-left: 8px;
+}
+
+/* Botão hambúrguer mobile */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1010;
+    transition: var(--transicao);
+}
+.navbar.scrolled .hamburger {
+    background: rgba(11, 37, 69, 0.05);
+    border: 1px solid rgba(11, 37, 69, 0.1);
+}
+.navbar.scrolled .hamburger span {
+    background: var(--azul-claro);
+}
+
+.hamburger span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--branco);
+    border-radius: 2px;
+    transition: var(--transicao);
+}
+
+/* Animação X quando aberto – JS adiciona .open */
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+
+/* ============================================================
+   5. HERO / BANNER PRINCIPAL
+   Para trocar a imagem: editar --hero-bg em :root (linha ~50)
+   ============================================================ */
+.hero {
+    position: relative;
+    min-height: 115vh;
+    background-image: var(--hero-bg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 130px 24px 80px;
+    overflow: hidden;
+}
+
+/* Gradiente de overlay sobre a foto */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(8, 16, 34, 0.8) 0%,
+        rgba(11, 37, 69, 0.45) 50%,
+        var(--azul-escuro) 100%
+    );
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+}
+
+.hero-top-info {
+    text-align: center;
+}
+
+.hero-pretitle {
+    font-size: clamp(12px, 1.5vw, 15px);
+    font-weight: 700;
+    letter-spacing: 6px;
+    color: var(--dourado-claro);
+    margin-bottom: 8px;
     text-transform: uppercase;
 }
 
-.lista-missas li span {
+.hero-titulo {
+    font-family: var(--fonte-titulo);
+    font-size: clamp(34px, 5.5vw, 60px);
+    font-weight: 700;
+    color: var(--branco);
+    letter-spacing: 2px;
+    line-height: 1.15;
+    text-shadow: 0 4px 12px rgba(0,0,0,0.45);
+}
+
+.hero-cursivo {
+    font-family: var(--fonte-cursiva);
+    font-size: clamp(38px, 5vw, 56px);
+    color: var(--dourado);
+    margin-top: -5px;
+    margin-bottom: 24px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.hero-badge-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--dourado), var(--dourado-claro));
+    color: var(--azul-claro);
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 10px 24px;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(197, 160, 89, 0.35);
+    transition: var(--transicao);
+}
+
+.hero-badge-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(197, 160, 89, 0.55);
+}
+
+/* Contêiner dos cards flutuantes */
+.hero-cards-container {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 32px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.hero-card {
+    background: var(--vidro-escuro-bg);
+    backdrop-filter: blur(var(--vidro-blur));
+    -webkit-backdrop-filter: blur(var(--vidro-blur));
+    border: 1px solid var(--vidro-escuro-borda);
+    border-radius: var(--radius);
+    box-shadow: var(--vidro-escuro-sombra);
+    overflow: hidden;
+    transition: var(--transicao);
+}
+
+.hero-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(197, 160, 89, 0.4);
+}
+
+.hero-card-header {
+    background: var(--azul-claro);
+    color: var(--branco);
+    padding: 16px 24px;
+    font-family: var(--fonte-titulo);
     font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--vidro-escuro-borda);
+    text-transform: uppercase;
+}
+
+.hero-card-body {
+    padding: 24px;
+}
+
+.hero-missa-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.hero-missa-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 8px;
+    font-size: 14px;
+}
+
+.hero-missa-list li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.hero-missa-list li strong {
+    color: var(--dourado-claro);
+    font-weight: 600;
+}
+
+.hero-missa-list li span {
+    color: var(--branco);
+}
+
+/* Widget Instagram */
+.widget-instagram {
+    display: flex;
+    flex-direction: column;
+    background: rgba(11, 37, 69, 0.75);
+}
+
+.instagram-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ig-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ig-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--dourado);
+    object-fit: cover;
+}
+
+.ig-meta {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.ig-username {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--branco);
+}
+
+.ig-location {
+    font-size: 10px;
+    color: var(--dourado-claro);
+}
+
+.ig-follow-btn {
+    background: var(--dourado);
+    color: var(--azul-claro);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 4px;
+    transition: var(--transicao);
+}
+
+.ig-follow-btn:hover {
+    background: var(--dourado-claro);
+}
+
+.instagram-post-body {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+}
+
+.ig-post-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transicao);
+}
+
+.instagram-post-body:hover .ig-post-img {
+    transform: scale(1.05);
+}
+
+.ig-post-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    opacity: 0;
+    transition: var(--transicao);
+    color: var(--branco);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.instagram-post-body:hover .ig-post-overlay {
+    opacity: 1;
+}
+
+.instagram-caption {
+    padding: 14px 20px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.85);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.instagram-caption strong {
+    color: var(--branco);
+    margin-right: 4px;
+}
+
+/* Seta de scroll animada */
+.scroll-down {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 20px;
+    animation: bounce 2.2s ease-in-out infinite;
+    transition: var(--transicao);
+}
+.scroll-down:hover { color: var(--dourado); }
 
 
+/* ============================================================
+   6. SEÇÃO MISSAS
+   ============================================================ */
+.section-missas {
+    background: linear-gradient(180deg, var(--azul-escuro) 0%, var(--azul-medio) 100%);
+}
+
+.missas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 22px;
+    margin-bottom: 28px;
+}
+
+/* Card individual de missa */
+.missa-card {
+    padding: 36px 26px;
+    text-align: center;
+    transition: var(--transicao);
+    position: relative;
+    overflow: hidden;
+}
+/* Barra dourada no topo (aparece no hover) */
+.missa-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--dourado), var(--dourado-claro));
+    opacity: 0;
+    transition: var(--transicao);
+}
+.missa-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(201, 162, 39, 0.3);
+}
+.missa-card:hover::before { opacity: 1; }
+
+/* Card de destaque (Sábado) */
+.missa-destaque {
+    background: rgba(197, 160, 89, 0.12);
+    border-color: rgba(197, 160, 89, 0.45);
+    box-shadow: 0 10px 32px rgba(197, 160, 89, 0.15);
+}
+.missa-destaque::before { opacity: 1; }
+
+.missa-icon {
+    font-size: 30px;
+    color: var(--dourado);
+    margin-bottom: 14px;
+}
+
+.missa-card h3 {
+    font-family: var(--fonte-titulo);
+    font-size: 19px;
+    color: var(--azul-claro);
+    margin-bottom: 18px;
+}
+
+.missa-horarios {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.missa-horarios li {
+    color: var(--texto);
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+}
+.missa-horarios li i {
+    color: var(--dourado);
+    font-size: 11px;
+    flex-shrink: 0;
+}
+
+/* Caixa de informações da secretaria */
+.secretaria-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 18px 28px;
+    flex-wrap: wrap;
+    text-align: center;
+}
+.secretaria-info > i {
+    font-size: 22px;
+    color: var(--dourado);
+    flex-shrink: 0;
+}
+.secretaria-info p {
+    color: var(--texto);
+    font-size: 14px;
+}
+.secretaria-tel {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--dourado);
+    font-weight: 700;
+    font-size: 15px;
+    white-space: nowrap;
+    transition: var(--transicao);
+}
+.secretaria-tel:hover {
+    color: var(--dourado-claro);
+    transform: scale(1.03);
+}
 
 
+/* ============================================================
+   7. SEÇÃO SOBRE
+   ============================================================ */
+.section-sobre {
+    background: linear-gradient(180deg, var(--azul-medio) 0%, var(--azul-escuro) 100%);
+}
+
+.sobre-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+}
+
+.sobre-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+/* Ajustes de alinhamento no bloco de texto */
+.sobre-texto .section-title { text-align: left; }
+.sobre-texto .divider { justify-content: flex-start; }
+.sobre-texto .divider::after { display: none; }
+
+.sobre-texto p {
+    color: var(--texto);
+    font-size: 15px;
+    line-height: 1.85;
+}
+.sobre-texto p strong { color: var(--dourado); }
+
+/* Container da imagem com borda vidro */
+.img-frame {
+    padding: 10px;
+    background: var(--branco);
+    border: 1px solid rgba(197, 160, 89, 0.15);
+    border-radius: var(--radius);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: var(--transicao);
+}
+.img-frame img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    border-radius: calc(var(--radius) - 6px);
+    transition: transform 0.6s ease;
+}
+.img-frame:hover img {
+    transform: scale(1.04);
+}
 
 
+/* ============================================================
+   8. SEÇÃO PASTORAIS
+   ============================================================ */
+.section-pastorais {
+    background: linear-gradient(180deg, var(--azul-escuro) 0%, var(--azul-medio) 100%);
+}
 
-/* ==========================================================================
-4. RESPONSIVIDADE (TELAS MENORES - TABLETS E CELULARES)
-   ========================================================================== */
-@media (max-width: 850px) {
+.pastorais-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 22px;
+}
+
+.pastoral-card {
+    padding: 38px 26px;
+    text-align: center;
+    transition: var(--transicao);
+    cursor: default;
+}
+.pastoral-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(201, 162, 39, 0.28);
+    background: rgba(201, 162, 39, 0.05);
+}
+
+/* Ícone circular */
+.pastoral-icon {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background: rgba(201, 162, 39, 0.1);
+    border: 1px solid rgba(201, 162, 39, 0.22);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 18px;
+    font-size: 24px;
+    color: var(--dourado);
+    transition: var(--transicao);
+}
+.pastoral-card:hover .pastoral-icon {
+    background: rgba(201, 162, 39, 0.18);
+    box-shadow: 0 0 22px rgba(201, 162, 39, 0.2);
+    transform: scale(1.08);
+}
+
+.pastoral-card h3 {
+    font-family: var(--fonte-titulo);
+    font-size: 17px;
+    color: var(--azul-claro);
+    margin-bottom: 10px;
+}
+.pastoral-card p {
+    font-size: 13px;
+    color: var(--texto-muted);
+    line-height: 1.75;
+}
+
+
+/* ============================================================
+   9. SEÇÃO EVENTOS
+   ============================================================ */
+.section-eventos {
+    background: linear-gradient(180deg, var(--azul-medio) 0%, var(--azul-escuro) 100%);
+}
+
+.eventos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 22px;
+}
+
+.evento-card {
+    display: flex;
+    gap: 20px;
+    padding: 26px;
+    transition: var(--transicao);
+    align-items: flex-start;
+}
+.evento-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(201, 162, 39, 0.28);
+}
+
+/* Bloco de data (canto esquerdo do card) */
+.evento-data {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 58px;
+    height: 68px;
+    background: linear-gradient(135deg, var(--dourado), var(--dourado-claro));
+    border-radius: 10px;
+    color: var(--azul-escuro);
+    font-weight: 700;
+    line-height: 1.1;
+}
+.evento-dia  { font-size: 20px; font-family: var(--fonte-titulo); }
+.evento-mes  { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+
+.evento-info h3 {
+    font-family: var(--fonte-titulo);
+    font-size: 16px;
+    color: var(--azul-claro);
+    margin-bottom: 7px;
+}
+.evento-info p {
+    font-size: 13px;
+    color: var(--texto-muted);
+    line-height: 1.65;
+    margin-bottom: 10px;
+}
+.evento-local {
+    font-size: 12px;
+    color: var(--dourado);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+
+/* ============================================================
+   10. SEÇÃO GALERIA + LIGHTBOX
+   ============================================================ */
+.section-galeria {
+    background: linear-gradient(180deg, var(--azul-escuro) 0%, var(--azul-medio) 100%);
+}
+
+/* Grade de fotos: 3 colunas, primeira ocupa coluna e linha duplas */
+.galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 220px;
+    gap: 12px;
+}
+
+.galeria-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius);
+    cursor: pointer;
+}
+.galeria-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+.galeria-item:hover img { transform: scale(1.08); }
+
+/* Overlay ao passar o mouse */
+.galeria-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 16, 34, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: var(--transicao);
+    font-size: 26px;
+    color: var(--branco);
+}
+.galeria-item:hover .galeria-overlay { opacity: 1; }
+
+/* Item de destaque (ocupa 2 colunas × 2 linhas) */
+.galeria-item--destaque {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+/* ─── LIGHTBOX ───────────────────────────────────────────── */
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(0, 0, 0, 0.93);
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+.lightbox.open { display: flex; }
+
+.lightbox img {
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 24px 72px rgba(0, 0, 0, 0.8);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--branco);
+    font-size: 18px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transicao);
+}
+.lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.18);
+    transform: rotate(90deg);
+}
+
+
+/* ============================================================
+   11. SEÇÃO CONTATO
+   ============================================================ */
+.section-contato {
+    background: linear-gradient(180deg, var(--azul-medio) 0%, #060e1c 100%);
+}
+
+.contato-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 36px;
+    align-items: start;
+}
+
+/* Lista de itens de informação */
+.contato-info {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 18px 22px;
+    transition: var(--transicao);
+}
+.info-item:hover {
+    border-color: rgba(201, 162, 39, 0.28);
+    transform: translateX(4px);
+}
+.info-item > i {
+    font-size: 18px;
+    color: var(--dourado);
+    width: 26px;
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+.info-item strong {
+    display: block;
+    color: var(--azul-claro);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 4px;
+}
+.info-item p {
+    color: var(--texto-muted);
+    font-size: 14px;
+    line-height: 1.6;
+}
+.info-item a {
+    color: var(--texto-muted);
+    transition: var(--transicao);
+}
+.info-item a:hover { color: var(--dourado); }
+
+/* Container do mapa */
+.mapa-container {
+    overflow: hidden;
+    padding: 8px;
+}
+.mapa-container iframe {
+    display: block;
+    width: 100%;
+    height: 420px;
+    border: none;
+    border-radius: calc(var(--radius) - 4px);
+    filter: grayscale(15%) contrast(1.05);
+}
+
+
+/* ============================================================
+   12. FOOTER
+   ============================================================ */
+.footer {
+    background: #040b18;
+    padding: 80px 0 0;
+    border-top: 1px solid var(--vidro-borda);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1.1fr;
+    gap: 48px;
+    padding-bottom: 64px;
+}
+
+.footer-logo {
+    height: 58px;
+    width: auto;
+    margin-bottom: 16px;
+    opacity: 0.9;
+}
+
+.footer-col p {
+    color: var(--texto-muted);
+    font-size: 14px;
+    line-height: 1.75;
+}
+
+/* Título de cada coluna do footer */
+.footer-col h4 {
+    font-family: var(--fonte-titulo);
+    font-size: 15px;
+    color: var(--dourado);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(201, 162, 39, 0.18);
+}
+
+.footer-col ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.footer-col ul a {
+    color: var(--texto-muted);
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: var(--transicao);
+}
+.footer-col ul a::before {
+    content: '›';
+    color: var(--dourado);
+    font-size: 16px;
+}
+.footer-col ul a:hover {
+    color: var(--branco);
+    padding-left: 4px;
+}
+
+.footer-col address p {
+    color: var(--texto-muted);
+    font-size: 14px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    line-height: 1.6;
+}
+.footer-col address i {
+    color: var(--dourado);
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+.footer-col address a {
+    color: var(--texto-muted);
+    transition: var(--transicao);
+}
+.footer-col address a:hover { color: var(--dourado); }
+
+/* Ícones de redes sociais */
+.footer-social {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 22px;
+}
+.footer-social a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--vidro-bg);
+    border: 1px solid var(--vidro-borda);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    color: var(--texto-muted);
+    transition: var(--transicao);
+}
+.footer-social a:hover {
+    background: rgba(201, 162, 39, 0.12);
+    border-color: rgba(201, 162, 39, 0.35);
+    color: var(--dourado);
+    transform: translateY(-3px);
+}
+
+.footer-horario {
+    font-size: 13px;
+    color: var(--texto-muted);
+    line-height: 1.75;
+}
+
+/* Linha de copyright */
+.footer-bottom {
+    border-top: 1px solid var(--vidro-borda);
+    padding: 20px 24px;
+    text-align: center;
+    color: var(--texto-muted);
+    font-size: 13px;
+}
+
+
+/* ============================================================
+   13. BOTÃO VOLTAR AO TOPO
+   JS adiciona .visivel quando scroll > 400px
+   ============================================================ */
+.btn-topo {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--dourado), var(--dourado-claro));
+    color: var(--azul-escuro);
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 18px rgba(201, 162, 39, 0.38);
+    transition: var(--transicao);
+    /* Oculto por padrão */
+    opacity: 0;
+    transform: translateY(16px);
+    pointer-events: none;
+    z-index: 999;
+}
+.btn-topo.visivel {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+.btn-topo:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 26px rgba(201, 162, 39, 0.52);
+}
+
+
+/* ============================================================
+   14. ANIMAÇÕES
+   ============================================================ */
+
+/* Hero: animação ao carregar a página */
+.fade-in {
+    opacity: 0;
+    transform: translateY(28px);
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 0.4s;
+}
+
+/* Elementos que animam ao entrar na viewport (via IntersectionObserver) */
+.fade-up, .fade-left, .fade-right {
+    opacity: 0;
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-up    { transform: translateY(38px); }
+.fade-left  { transform: translateX(-38px); }
+.fade-right { transform: translateX(38px); }
+
+/* JS adiciona .visible quando o elemento entra na tela */
+.fade-up.visible,
+.fade-left.visible,
+.fade-right.visible {
+    opacity: 1;
+    transform: translate(0);
+}
+
+/* Delay escalonado para cards em sequência */
+.fade-up:nth-child(2) { transition-delay: 0.10s; }
+.fade-up:nth-child(3) { transition-delay: 0.20s; }
+.fade-up:nth-child(4) { transition-delay: 0.30s; }
+.fade-up:nth-child(5) { transition-delay: 0.40s; }
+.fade-up:nth-child(6) { transition-delay: 0.50s; }
+
+@keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Animação de bounce na seta do hero */
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%       { transform: translateX(-50%) translateY(10px); }
+}
+
+
+/* ============================================================
+   15. RESPONSIVIDADE
+   
+   Breakpoints:
+   ─ Desktop grande:  > 1200px  (padrão)
+   ─ Tablet:          ≤ 960px
+   ─ Mobile:          ≤ 600px
+   ─ Mobile pequeno:  ≤ 380px
+   ============================================================ */
+
+/* ── TABLET (≤ 960px) ──────────────────────────────────── */
+@media (max-width: 960px) {
+
+    :root { --section-pad: 72px 0; }
+
+    /* Navbar mobile */
+    .nav-desktop { display: none !important; }
+    .hamburger { display: flex !important; }
+
+    /* Hero mobile */
+    .hero {
+        background-attachment: scroll;
+        padding-top: 110px;
+        min-height: auto;
+    }
     
-    /* Configura o cabeçalho mobile mantendo a logo bem visível na direita ou centro */
-    .header-container {
-        justify-content: space-between; /* Afasta o hambúrguer da logo */
-        padding: 15px 30px;
-        position: relative;
+    .hero-cards-container {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        margin-top: 24px;
     }
 
-    /* Mantém a logo do menu com tamanho seguro e nítido */
-    .Logo-center img {
-        height: 60px;
-        order: 2; /* Garante o posicionamento correto ao lado do botão */
+    /* Sobre: empilhar em coluna única */
+    .sobre-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .sobre-texto .section-title { text-align: center; }
+    .sobre-texto .divider { justify-content: center; }
+    .sobre-texto .divider::after { display: block; }
+    .img-frame img { height: 280px; }
+
+    /* Sacramentos: empilhar em coluna única */
+    .sacramentos-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
     }
 
-    /* Exibe o botão de três risquinhos (Hambúrguer) */
-    .menu-hamburger {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 30px;
-        height: 20px;
-        cursor: pointer;
-        order: 1;
-        z-index: 1010;
+    /* Contato: coluna única */
+    .contato-grid { grid-template-columns: 1fr; }
+
+    /* Footer: 2 colunas */
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 36px;
     }
 
-    .menu-hamburger span {
-        display: block;
-        height: 3px;
-        width: 100%;
-        background-color: #ffffff;
-        border-radius: 3px;
-        transition: all 0.3s ease;
+    /* Galeria: 2 colunas */
+    .galeria-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 180px;
     }
-
-    /* Esconde e estiliza os containers de links em formato de gaveta vertical */
-    .nav-wrapper {
-        display: none; /* Escondido por padrão */
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: rgba(22, 71, 144, 0.397); /* Fundo sólido para leitura */
-        backdrop-filter: blur(10px);
-        padding: 20px 0;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        z-index: 1005;
-    }
-
-    /* Como temos dois wrappers (esquerda e direita), ajustamos a ordem empilhada */
-    .nav-wrapper:nth-of-type(1) { top: 90px; }
-    .nav-wrapper:nth-of-type(2) { top: 250px; border-top: 1px solid rgba(255,255,255,0.1); }
-
-    .nav-grupo ul {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .nav-grupo li {
-        margin: 0;
-        text-align: center;
-    }
-
-    .nav-grupo a {
-        font-size: 18px;
-        display: block;
-        padding: 10px 0;
-    }
-
-    /* A MÁGICA: Quando o checkbox invisível for marcado, exibe as gavetas de menu */
-    .menu-toggle-input:checked ~ .nav-wrapper {
-        display: block;
-    }
-
-    /* Animação opcional: Transforma o hambúrguer em um "X" quando aberto */
-    .menu-toggle-input:checked + .menu-hamburger span:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
-    }
-    .menu-toggle-input:checked + .menu-hamburger span:nth-child(2) {
-        opacity: 0;
-    }
-    .menu-toggle-input:checked + .menu-hamburger span:nth-child(3) {
-        transform: rotate(-45deg) translate(7px, -7px);
-    }
-
-    /* --------------------------------------------------
-    AJUSTES DO CORPO (LOGO DA SECTION MAIOR E NO CANTO)
-       -------------------------------------------------- */
-    .section-principal {
-        align-items: flex-start;    /* Mantém alinhada ao topo/canto */
-        justify-content: flex-start; /* Garante posicionamento na lateral esquerda */
-        padding: 140px 0 40px 6%;   /* Aumenta o espaço superior para não bater no menu */
-        background-attachment: scroll; 
-    }
-
-    /* Logo principal da igreja destacada e protuberante */
-    .section-principal img {
-        max-height: 48vh; /* Tamanho preservado e imponente */
-        width: 85%;       /* Preenche bem a largura sem esmagar as bordas */
+    .galeria-item--destaque {
+        grid-column: span 2;
+        grid-row: span 1;
     }
 }
-@media (max-width: 768px) {
-    .secao-horarios {
-        padding: 40px 5%;
-        justify-content: center; /* Centraliza o card no celular */
-    }
-    
-    .card-vidro-missas {
-        padding: 25px;
-    }
+
+/* ── MOBILE (≤ 600px) ──────────────────────────────────── */
+@media (max-width: 600px) {
+
+    :root { --section-pad: 56px 0; }
+
+    .hero-titulo       { font-size: 28px; }
+    .hero-cursivo      { font-size: 32px; }
+    .btn               { padding: 12px 22px; font-size: 12px; }
+
+    .missas-grid       { grid-template-columns: 1fr; }
+    .pastorais-grid    { grid-template-columns: 1fr; }
+    .eventos-grid      { grid-template-columns: 1fr; }
+
+    /* Galeria coluna única */
+    .galeria-grid      { grid-template-columns: 1fr; grid-auto-rows: 200px; }
+    .galeria-item--destaque { grid-column: span 1; grid-row: span 1; }
+
+    /* Footer coluna única */
+    .footer-grid       { grid-template-columns: 1fr; gap: 28px; }
+
+    .secretaria-info   { flex-direction: column; gap: 10px; }
+
+    .btn-topo { bottom: 18px; right: 18px; width: 42px; height: 42px; }
+}
+
+/* ── MOBILE PEQUENO (≤ 380px) ──────────────────────────── */
+@media (max-width: 380px) {
+    .btn        { width: 100%; justify-content: center; }
+}
+
+
+/* ============================================================
+   CLASSES DE SUPORTE E COMPONENTES COMPLEMENTARES
+   ============================================================ */
+
+/* ─── CARD LIMPO ( frosted / clean outline ) ───────────── */
+.card-limpo {
+    background: var(--branco);
+    border: 1px solid rgba(197, 160, 89, 0.15);
+    border-radius: var(--radius);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    transition: var(--transicao);
+}
+.card-limpo:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(197, 160, 89, 0.12);
+    border-color: var(--dourado);
+}
+
+/* ─── SEÇÃO SACRAMENTOS ───────────────────────────────── */
+.section-sacramentos {
+    background: linear-gradient(180deg, var(--azul-medio) 0%, var(--azul-escuro) 100%);
+}
+
+.sacramentos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+    margin-top: 20px;
+}
+
+.sacramento-card {
+    position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: var(--transicao);
+    background: var(--branco);
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.sacramento-img-wrapper {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.sacramento-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.sacramento-card:hover .sacramento-img-wrapper img {
+    transform: scale(1.08);
+}
+
+.sacramento-content {
+    position: relative;
+    z-index: 2;
+    margin: 20px;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: calc(var(--radius) - 4px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+    transition: var(--transicao);
+}
+
+.sacramento-card:hover .sacramento-content {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: var(--dourado);
+    transform: translateY(-5px);
+}
+
+.sacramento-content h3 {
+    font-family: var(--fonte-titulo);
+    font-size: 20px;
+    color: var(--azul-claro);
+    margin-bottom: 10px;
+}
+
+.sacramento-content p {
+    font-size: 13px;
+    color: var(--texto-muted);
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.btn-card-link {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--dourado);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    transition: var(--transicao);
+}
+
+.btn-card-link:hover {
+    color: var(--azul-claro);
+    transform: translateX(4px);
+}
+
+/* ─── CORREÇÕES DO FOOTER ESCURO ─────────────────────── */
+.footer p,
+.footer li a,
+.footer address p,
+.footer address a,
+.footer-horario {
+    color: #a0aec0 !important;
+}
+.footer li a:hover,
+.footer address a:hover {
+    color: var(--dourado) !important;
+}
+.footer-bottom p {
+    color: #718096 !important;
 }
