@@ -787,8 +787,33 @@ address { font-style: normal; }
     margin-bottom: 18px;
 }
 
-.aviso{
-    border-radius: 10px;
+.aviso {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 18px;
+    display: block;
+}
+
+.secretaria-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 28px;
+    text-align: left;
+}
+
+.secretaria-banner > i {
+    font-size: 22px;
+    color: var(--dourado);
+    flex-shrink: 0;
+}
+
+.secretaria-banner p {
+    color: var(--texto);
+    font-size: 14px;
+    margin: 0;
 }
 
 
