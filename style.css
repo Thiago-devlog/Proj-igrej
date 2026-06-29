@@ -137,6 +137,19 @@ address { font-style: normal; }
     margin-bottom: 56px;
 }
 
+.section--foto {
+    position: relative;
+    overflow: hidden;
+}
+
+.section--foto::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.03);
+    pointer-events: none;
+}
+
 .section-tag {
     display: inline-block;
     font-size: 12px;
@@ -211,6 +224,17 @@ address { font-style: normal; }
     border: 2px solid transparent;
     transition: var(--transicao);
     white-space: nowrap;
+}
+
+.btn-azul {
+    background: var(--azul-claro);
+    color: var(--branco);
+    border-color: transparent;
+}
+
+.btn-azul:hover {
+    background: rgba(11, 37, 69, 0.95);
+    transform: translateY(-2px);
 }
 
 /* Botão primário dourado */
@@ -720,11 +744,15 @@ address { font-style: normal; }
 
 /* Card individual de missa */
 .missa-card {
-    padding: 36px 26px;
+    padding: 18px;
     text-align: center;
     transition: var(--transicao);
     position: relative;
     overflow: hidden;
+    min-height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 /* Barra dourada no topo (aparece no hover) */
 .missa-card::before {
@@ -750,11 +778,7 @@ address { font-style: normal; }
 }
 .missa-destaque::before { opacity: 1; }
 
-.missa-icon {
-    font-size: 30px;
-    color: var(--dourado);
-    margin-bottom: 14px;
-}
+
 
 .missa-card h3 {
     font-family: var(--fonte-titulo);
@@ -763,24 +787,11 @@ address { font-style: normal; }
     margin-bottom: 18px;
 }
 
-.missa-horarios {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.aviso{
+    border-radius: 10px;
 }
-.missa-horarios li {
-    color: var(--texto);
-    font-size: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 9px;
-}
-.missa-horarios li i {
-    color: var(--dourado);
-    font-size: 11px;
-    flex-shrink: 0;
-}
+
+
 
 /* Caixa de informações da secretaria */
 .secretaria-info {
